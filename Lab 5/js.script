@@ -1,0 +1,74 @@
+let audio = document.getElementById("cityAudio");
+let title = document.getElementById("sceneTitle");
+let image = document.getElementById("sceneImage");
+let text = document.getElementById("sceneText");
+
+
+function changeScene(scene) {
+    if (scene=== "morning") {
+        
+title.innerHTML = "Morning in Hong Kong";
+image.src = "images/morning.jpg";
+ text.innerHTML = "The streets are busy with markets and people starting their day.";
+document.body.style.backgroundColor = "lightyellow";
+
+
+    } else if(scene=== "afternoon") {
+
+title.innerHTML = "Afternoon in Hong Kong";
+image.src = "images/afternoon.jpg";
+text.innerHTML = "The famous trams travel through the busy streets";
+document.body.style.backgroundColor = "lightblue";
+
+    } else if(scene=== "night") {
+
+title.innerHTML = "Night in Hong Kong";
+image.src = "images/night.jpg";
+text.innerHTML = "The city lights up with colorful buildings and busy roads";
+document.body.style.backgroundColor = "lightgray";
+
+    }
+
+
+image.style.animation = "none";
+image.offsetHeight;
+image.style.animation = "fadeIn 1s";
+
+}
+
+
+document.getElementById("morningBtn").onclick = function() {
+audio.currentTime = 0;
+changeScene("morning");
+
+
+};
+
+
+document.getElementById("afternoonBtn").onclick = function() {
+audio.currentTime = 25;
+changeScene("afternoon");
+
+
+};
+
+document.getElementById("nightBtn").onclick = function() {
+audio.currentTime = 50;
+changeScene("night");
+
+
+};
+
+
+
+audio.ontimeupdate = function() {
+    let time = audio.currentTime;
+
+    if(time < 25) {
+        changeScene("morning");
+    } else if(time < 50){
+        changeScene("afternoon")
+    } else {
+        changeScene("night");
+    }
+};
